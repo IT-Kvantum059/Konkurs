@@ -1,0 +1,2 @@
+# Konkurs
+For konkurs
