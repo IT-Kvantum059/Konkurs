@@ -88,7 +88,7 @@ if __name__ == "__main__": #Если запустить файл, то код б
                 # print((min_c, files[c.index(min_c)].split('/')[-1]))
                 cmd = files[c.index(min_c)].split('/')[-1].split('.')[0][:-1]
                 if cmd != last_cmd:
-                    requests.get('http://192.168.10.175:8000/input?cmd=%s' % cmd)
+                    requests.get('http://127.0.0.1:8000/input?cmd=%s' % cmd)
                     print((min_c, files[c.index(min_c)].split('/')[-1]))
                 last_cmd = cmd
                 # sleep(1)
