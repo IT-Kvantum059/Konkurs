@@ -24,13 +24,13 @@ def compare(img1, img2):
     return sum(D)**1/2
 
 def imf(frame: 'np.array', imageExample: 'np.array') -> float:#функция сравнения кадра из видео с эталоном
-    avg=imageExample.mean()#функция mean ищет среднее арифметическое масива изображения 
+    avg=imageExample.mean()#функция mean ищет среднее арифметическое масива изображения
     avg1=frame.mean()
     # print(avg, avg1)
-    
+
     s,threshold_image=cv2.threshold(imageExample,avg,255, 0)#Функция threshold возвращает изображение, в котором все пиксели, которые темнее 127 заменены на 0, а все, которые ярче 127, — на 255
     d,threshold_frame=cv2.threshold(frame,avg1,255, 0)#Функция threshold возвращает изображение, в котором все пиксели, которые темнее 127 заменены на 0, а все, которые ярче 127, — на 255
-    
+
     resized_image = cv2.resize(threshold_image, (SIZE,SIZE), interpolation = cv2.INTER_AREA) #Уменьшим картинку,INTER_AREA это передискретизации с использованием отношения площади пикселя, понятия не имею что это, но оно работае
     resized_frame = cv2.resize(threshold_frame, (SIZE,SIZE), interpolation = cv2.INTER_AREA) #Уменьшим картинку,INTER_AREA это передискретизации с использованием отношения площади пикселя, понятия не имею что это, но оно работае
 
@@ -39,15 +39,15 @@ def imf(frame: 'np.array', imageExample: 'np.array') -> float:#функция с
     # cv2.imshow('aaaa', threshold_image)
     cv2.imshow('aaaa', threshold_frame)
     similar_coeff = compare(resized_frame, resized_image)
-    
+
     return similar_coeff
 
 
     #print(imf("/home/sophia/Изображения/IMG-1544.jpg"))#кадры из видео
 
 def get_roi(img): # Фнукция для вывода определенной части изображения
-    
-    # img = cv2.imread(path, 0) 
+
+    # img = cv2.imread(path, 0)
     # print(img.shape)
     return img[Y0:Y1, X0:X1]
 
@@ -60,8 +60,8 @@ def get_painted_roi_on_frame(img):
 if __name__ == "__main__": #Если запустить файл, то код будет читаться отсюда
 
     last_cmd = ''
-    cmd = ''    
-    #1 - путь, а второе значение координат области изображения  
+    cmd = ''
+    #1 - путь, а второе значение координат области изображения
     files = glob('examples/img/*.png')
     print(files)
     exxs = [cv2.imread(exx, 0) for exx in files]
@@ -105,5 +105,3 @@ if __name__ == "__main__": #Если запустить файл, то код б
 
     cap.release()
     cv2.destroyAllWindows()
-
-
